@@ -1,0 +1,39 @@
+// ==UserScript==
+// @name         Inject HTML Head Links on m.youtube.com
+// @namespace    http://tampermonkey.net/
+// @version      1.0
+// @description  Inject specific links into the HTML head of m.youtube.com
+// @author       Your Name
+// @match        https://m.youtube.com/*
+// @grant        none
+// ==/UserScript==
+
+(function() {
+    'use strict';
+
+    // Create the first link element
+    const appleTouchIcon = document.createElement('link');
+    appleTouchIcon.href = 'https://makibul.com/custom-webapps/youtube/apple-touch-icon.png';
+    appleTouchIcon.rel = 'apple-touch-icon';
+    appleTouchIcon.sizes = '180x180';
+
+    // Create the second link element
+    const favicon = document.createElement('link');
+    favicon.href = 'https://makibul.com/custom-webapps/youtube/favicon.ico';
+    favicon.rel = 'shortcut icon';
+    favicon.sizes = 'any';
+    favicon.type = 'image/png';
+
+    // Create the third link element
+    const manifest = document.createElement('link');
+    manifest.href = 'https://makibul.com/custom-webapps/youtube/manifest.json';
+    manifest.rel = 'manifest';
+
+    // Inject the elements into the <head>
+    const head = document.querySelector('head');
+    if (head) {
+        head.appendChild(appleTouchIcon);
+        head.appendChild(favicon);
+        head.appendChild(manifest);
+    }
+})();
